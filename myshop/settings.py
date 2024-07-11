@@ -150,3 +150,16 @@ CART_SESSION_ID = 'cart'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://localhost:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
